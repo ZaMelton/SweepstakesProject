@@ -8,7 +8,7 @@ namespace Sweepstakes
 {
     class MarketingFirm
     {
-        ISweepstakesManager _manager;
+        public ISweepstakesManager _manager;
 
         public MarketingFirm(ISweepstakesManager manager)
         {
@@ -17,7 +17,17 @@ namespace Sweepstakes
 
         public void CreateSweepstake()
         {
-            
+            SweepStakes sweepStakes = new SweepStakes(UserInterface.DecideSweepstakesName());
+
+            //Register contestants
+            int numberOfContestants = UserInterface.ChooseHowManyContestantsToRegister();
+            for(int i = 0; i < numberOfContestants; i++)
+            {
+                sweepStakes.RegisterContestant(new Contestant(UserInterface.ContestantFirstName(), UserInterface.ContestantLastName(), UserInterface.ContestantEmail(), UserInterface.ContestantRegistrationNumber()));
+                UserInterface.ClearConsole();
+            }
+
+            _manager.InsertSweepstakes(sweepStakes);
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class SweepstakesManagerFactory
+    static class SweepstakesManagerFactory
     {
-        public ISweepstakesManager CreateManager(string choice)
+        public static ISweepstakesManager CreateSweepstakesManager(string choice)
         {
             switch (choice)
             {
@@ -17,7 +17,7 @@ namespace Sweepstakes
                 case "stack":
                     return new SweepstakesStackManager();
             }
-            return CreateManager(choice);
+            return CreateSweepstakesManager(choice);
         }
     }
 }
