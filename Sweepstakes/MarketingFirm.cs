@@ -27,7 +27,6 @@ namespace Sweepstakes
                 sweepStakes.RegisterContestant(new Contestant(UserInterface.ContestantFirstName(), UserInterface.ContestantLastName(), UserInterface.ContestantEmail(), UserInterface.ContestantRegistrationNumber()));
                 UserInterface.ClearConsole();
             }
-
             _manager.InsertSweepstakes(sweepStakes);
         }
     }

@@ -9,6 +9,7 @@ namespace Sweepstakes
     interface IObserver
     {
         string FirstName { get; set; }
+        string EmailAddress { get; set; }
 
         void Notify(IObserver observer, IObserver winner);
     }
