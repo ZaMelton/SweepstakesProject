@@ -26,7 +26,7 @@ namespace Sweepstakes
         public Contestant PickWinner()
         {
             Random rand = new Random();
-            int winner = rand.Next(0, contestants.Count);
+            int winner = rand.Next(contestants.Count);
             return contestants[winner];
         }
 

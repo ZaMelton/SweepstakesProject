@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class Contestant
+    class Contestant : IObserver
     {
         public string firstName;
         public string lastName;
@@ -19,6 +19,11 @@ namespace Sweepstakes
             this.lastName = lastName;
             this.emailAddress = emailAddress;
             this.registrationNumber = registrationNumber;
+        }
+
+        public void Notify(IObserver observer)
+        {
+
         }
 
         public string ContestantInfo(Contestant contestant)

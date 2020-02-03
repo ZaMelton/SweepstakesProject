@@ -86,6 +86,22 @@ namespace Sweepstakes
             return numberOfContestants;
         }
 
+        public static int ChooseHowManySweepstakesToCreate()
+        {
+            int numberOfSweepstakes;
+            Console.WriteLine("How many sweepstakes will you be creating?");
+            try
+            {
+                numberOfSweepstakes = Int32.Parse(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                return ContestantRegistrationNumber();
+            }
+
+            return numberOfSweepstakes;
+        }
+
         public static void ClearConsole()
         {
             Console.Clear();
