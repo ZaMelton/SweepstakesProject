@@ -8,7 +8,8 @@ namespace Sweepstakes
 {
     interface IObserver
     {
-        void Notify(IObserver observer);
+        string FirstName { get; set; }
 
+        void Notify(IObserver observer, IObserver winner);
     }
 }

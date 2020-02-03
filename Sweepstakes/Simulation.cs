@@ -8,10 +8,13 @@ namespace Sweepstakes
 {
     class Simulation
     {
+        public MarketingFirm marketingFirm;
+        public int numberOfSweepstakes;
+
         public void RunSimulation()
         {
-            MarketingFirm marketingFirm = CreateMarketingFirmWithManager();
-            int numberOfSweepstakes = UserInterface.ChooseHowManySweepstakesToCreate();
+            marketingFirm = CreateMarketingFirmWithManager();
+            numberOfSweepstakes = UserInterface.ChooseHowManySweepstakesToCreate();
 
             for(int i = 0; i < numberOfSweepstakes; i++)
             {
@@ -20,9 +23,7 @@ namespace Sweepstakes
 
             for(int i = 0; i < numberOfSweepstakes; i++)
             {
-                SweepStakes sweep = marketingFirm._manager.GetSweepstakes();
-                UserInterface.Display($"{sweep.Name} winner: ");
-                sweep.PrintContestant(sweep.PickWinner());
+                NotifyContestantsResults();
             }
         }
 
@@ -30,6 +31,27 @@ namespace Sweepstakes
         {
             MarketingFirm marketingFirm = new MarketingFirm(SweepstakesManagerFactory.CreateSweepstakesManager(UserInterface.DecideManagerType()));
             return marketingFirm;
+        }
+
+        public void NotifyContestantsResults()
+        {
+            SweepStakes sweep = marketingFirm._manager.GetSweepstakes();
+            Contestant winner = sweep.PickWinner();
+            winner.winStatus = true;
+
+            bool winnerPrinted = false;
+            foreach (KeyValuePair<int, Contestant> contestant in sweep.contestants)
+            {
+                if (contestant.Value.winStatus && !winnerPrinted)
+                {
+                    winner.Notify(contestant.Value, winner);
+                    winnerPrinted = true;
+                }
+                else
+                {
+                    contestant.Value.Notify(contestant.Value, winner);
+                }
+            }
         }
     }
 }

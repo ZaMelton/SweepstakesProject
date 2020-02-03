@@ -8,7 +8,7 @@ namespace Sweepstakes
 {
     class SweepStakes
     {
-        Dictionary<int, Contestant> contestants;
+        public Dictionary<int, Contestant> contestants;
         string name;
         public string Name {get => name; set => name = value;}
 
